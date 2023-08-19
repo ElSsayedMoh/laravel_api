@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\DistrictController;
+use App\Http\Controllers\Api\DomainController;
 use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +24,19 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+//=============================== Auth Module ================================//
+Route::controller(AuthController::class)->group(function(){
+    Route::post('register' , 'register');
+    Route::post('login' , 'login');
+    Route::post('logout' , 'logout')->middleware('auth:sanctum');
+});
 
 Route::get('/setting' , SettingController::class);     // => The Type is Invokable 
 
 Route::get('/cities' , CityController::class);          // => The Type is Invokable
 
 Route::get('/district' , DistrictController::class);  // => The Type is Invokable
+
+Route::post('/message' , MessageController::class); // => The Type is Invokable
+
+Route::get('/domains' , DomainController::class);
