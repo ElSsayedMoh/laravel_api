@@ -59,6 +59,12 @@ class AuthController extends Controller
         } else {
             return ApiResponse::sendResponse(401 , 'User Credentials Doesnt\'t Exist' []);
         }
+
+        $credentials = $request->validated();
+        if (!$token = auth()->guard('student')->attempt($credentials)) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        return $this->createNewToken($token);
     }
 
     public function logout(Request $request) {

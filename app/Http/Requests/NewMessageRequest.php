@@ -25,7 +25,7 @@ class NewMessageRequest extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        if($this->is('api/*')){      // <=  check any url use api
+        if($this->is('api/*')){      // <=    get any url use api
             $response = ApiResponse::sendResponse(422 , 'Validation Error' , $validator->errors());     // you can return just messages => $validator->messages()->all() 
             throw new ValidationException($validator ,$response);
         }

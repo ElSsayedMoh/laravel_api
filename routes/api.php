@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AdController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\DistrictController;
@@ -40,3 +41,7 @@ Route::get('/district' , DistrictController::class);  // => The Type is Invokabl
 Route::post('/message' , MessageController::class); // => The Type is Invokable
 
 Route::get('/domains' , DomainController::class);
+
+Route::prefix('ads')->controller(AdController::class)->group(function() {
+    Route::get('/' , 'index');
+});
