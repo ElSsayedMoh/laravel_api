@@ -43,5 +43,15 @@ Route::post('/message' , MessageController::class); // => The Type is Invokable
 Route::get('/domains' , DomainController::class);
 
 Route::prefix('ads')->controller(AdController::class)->group(function() {
-    Route::get('/' , 'index');
+    // basic
+        Route::get('/' , 'index');
+        Route::get('/latest' , 'latest');
+        Route::get('/domain/{domain_id}' , 'domain');
+        Route::get('/search' , 'search');
+    // User API ads endpoint
+        Route::middleware('auth:sanctum')->group(function() {
+            Route::post('/create' , 'create');
+            Route::post('/update/{adId}' , 'update');
+            Route::get('/delete/{adId}' , 'delete');
+        });
 });

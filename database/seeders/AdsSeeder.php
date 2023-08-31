@@ -22,6 +22,7 @@ class AdsSeeder extends Seeder
                 'text' => fake()->paragraph(),
                 'phone' => fake()->phoneNumber(),
                 'user_id' => 1,
+                'domain_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);

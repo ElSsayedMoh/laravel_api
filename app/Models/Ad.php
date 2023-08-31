@@ -13,10 +13,15 @@ class Ad extends Model
         'slug',
         'text',
         'phone',
-        'user_id'
+        'user_id',
+        'domain_id'
     ];
 
     public function user(){
         return $this->belongsTo(User::class , 'user_id');
+    }
+
+    public function domain(){
+        return $this->belongsTo(Domain::class , 'domain_id');
     }
 }
